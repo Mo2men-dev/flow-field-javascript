@@ -1,0 +1,15 @@
+{
+  "name": "flowfield",
+  "version": "1.0.0",
+  "main": "canvas.js",
+  "dependencies": {
+    "@chriscourses/perlin-noise": "^1.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Momen Sameh",
+  "license": "MIT",
+  "description": "This is a simple implementation of the Flowfield using Perlin Noise and Javascript."
+}

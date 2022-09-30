@@ -94,13 +94,15 @@
             align-items: center;
         }
 
-        #color-picker {
+        #color-picker,
+        #background-color-picker {
             background: transparent;
             border: none;
             outline: none;
         }
 
-        #reset-color-btn {
+        #reset-color-btn,
+        #reset-background-btn {
             background-color: #000;
             color: #fff;
             border-radius: 5px;
@@ -158,6 +160,13 @@
             <div class="color-control">
                 <input type="color" id="color-picker">
                 <button id="reset-color-btn">Default Colors</button>
+            </div>
+        </div>
+        <div class="control">
+            <label for="">Background Color</label>
+            <div class="color-control">
+                <input type="color" id="background-color-picker">
+                <button id="reset-background-btn">Default Background</button>
             </div>
         </div>
 

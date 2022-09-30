@@ -13,10 +13,12 @@ let scaleNoise = 0.01;
 let angleMult = 1;
 let colors = ["yellow", "blue"];
 let acc = 3;
+let backgroundColor = "#222";
 
 // **Controls** \
 
 // Elements
+const body = document.querySelector("body");
 const scaleNoiseIncrement = document.getElementsByClassName("increment")[0];
 const scaleNoiseDecrement = document.getElementsByClassName("decrement")[0];
 const particalesAmountRange = document.getElementById("particales");
@@ -24,6 +26,10 @@ const angleMulttRange = document.getElementById("noise-angle");
 const accelerationRange = document.getElementById("acceleration");
 const colorPicker = document.getElementById("color-picker");
 const resetColors = document.getElementById("reset-color-btn");
+const backgroundColorPicker = document.getElementById(
+  "background-color-picker"
+);
+const resetBackground = document.getElementById("reset-background-btn");
 
 // Display Elements
 const scaleNoiseDisplay = document.getElementById("noise-scale");
@@ -93,6 +99,20 @@ resetColors.addEventListener("click", () => {
   colors = ["yellow", "blue"];
   init();
 });
+
+backgroundColorPicker.addEventListener("change", () => {
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  body.style.backgroundColor = backgroundColorPicker.value;
+  backgroundColor = backgroundColorPicker.value;
+  init();
+});
+
+resetBackground.addEventListener("click", () => {
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  backgroundColor = "#222";
+  init();
+});
+
 // **Canvas Resize** \
 
 canvas.width = window.innerWidth * 0.75;
@@ -174,7 +194,7 @@ class Particale {
 // **Init Function** \
 function init() {
   particales = [];
-  c.fillStyle = "#222";
+  c.fillStyle = backgroundColor;
   c.globalAlpha = 0.1;
   c.fillRect(0, 0, canvas.width, canvas.height);
 

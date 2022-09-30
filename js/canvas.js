@@ -36,6 +36,8 @@ const controls = document.getElementById("controls-container");
 const showControls = document.getElementById("show-controls");
 const closeControls = document.getElementById("close-btn");
 const fullAlpha = document.getElementById("full-alpha-check");
+const fullScreen = document.getElementById("full-screen-btn");
+const closeFullScreen = document.getElementById("close-full-screen");
 
 // Display Elements
 const scaleNoiseDisplay = document.getElementById("noise-scale");
@@ -143,6 +145,22 @@ showControls.addEventListener("click", () => {
 
 closeControls.addEventListener("click", () => {
   controls.style.display = "none";
+});
+
+fullScreen.addEventListener("click", () => {
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  closeFullScreen.style.display = "flex";
+  init();
+});
+
+closeFullScreen.addEventListener("click", () => {
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.width = window.innerWidth * 0.75;
+  canvas.height = window.innerHeight * 0.75;
+  closeFullScreen.style.display = "none";
+  init();
 });
 
 // **Canvas Resize** \

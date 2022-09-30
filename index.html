@@ -88,6 +88,27 @@
             font-size: 2rem;
         }
 
+        .color-control {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #color-picker {
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+
+        #reset-color-btn {
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 0 0 0 5px;
+            cursor: pointer;
+        }
+
         #code {
             position: absolute;
             bottom: 0;
@@ -132,7 +153,13 @@
             <input type="range" id="acceleration" min="1" max="10" step="1" value="1">
             <span id="acc-num"></span>
         </div>
-
+        <div class="control">
+            <label for="">Colors</label>
+            <div class="color-control">
+                <input type="color" id="color-picker">
+                <button id="reset-color-btn">Default Colors</button>
+            </div>
+        </div>
 
     </div>
     <div id="code">Code on Github <a href="https://github.com/Mo2men-dev/flow-field-javascript">Here</a></div>

@@ -11,17 +11,19 @@ const c = canvas.getContext("2d");
 let num = 500;
 let scaleNoise = 0.01;
 let angleMult = 1;
-const colors = ["yellow", "blue"];
+let colors = ["yellow", "blue"];
 let acc = 3;
 
 // **Controls** \
 
-// Control Elements
+// Elements
 const scaleNoiseIncrement = document.getElementsByClassName("increment")[0];
 const scaleNoiseDecrement = document.getElementsByClassName("decrement")[0];
 const particalesAmountRange = document.getElementById("particales");
 const angleMulttRange = document.getElementById("noise-angle");
 const accelerationRange = document.getElementById("acceleration");
+const colorPicker = document.getElementById("color-picker");
+const resetColors = document.getElementById("reset-color-btn");
 
 // Display Elements
 const scaleNoiseDisplay = document.getElementById("noise-scale");
@@ -77,10 +79,20 @@ accelerationRange.addEventListener("change", () => {
   c.clearRect(0, 0, canvas.width, canvas.height);
   acc = accelerationRange.value;
   accelerationDisplay.innerHTML = acc;
-  console.log(acc);
   init();
 });
 
+colorPicker.addEventListener("change", () => {
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  colors = [colorPicker.value];
+  init();
+});
+
+resetColors.addEventListener("click", () => {
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  colors = ["yellow", "blue"];
+  init();
+});
 // **Canvas Resize** \
 
 canvas.width = window.innerWidth * 0.75;

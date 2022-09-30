@@ -82,7 +82,7 @@
         .control {
             display: flex;
             flex-direction: column;
-            justify-content: start;
+            justify-content: center;
             align-items: center;
             height: fit-content;
             width: 100%;
@@ -126,6 +126,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .full-alpha-container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+
+        .full-alpha-container>label {
+            margin: 0;
+        }
+
+        .full-alpha-container>input {
+            margin: 0 5px 0 0;
         }
 
         #color-picker,
@@ -208,6 +224,12 @@
             <div class="color-control">
                 <input type="color" id="background-color-picker">
                 <button id="reset-background-btn">Default Background</button>
+            </div>
+        </div>
+        <div class="control">
+            <div class="full-alpha-container">
+                <input type="checkbox" id="full-alpha-check">
+                <label for="">100% Alpha</label>
             </div>
         </div>
 

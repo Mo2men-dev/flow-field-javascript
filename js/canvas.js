@@ -14,6 +14,7 @@ let angleMult = 1;
 let colors = ["yellow", "blue"];
 let acc = 3;
 let backgroundColor = "#222";
+let globalAlpha = 0.1;
 
 // **Controls** \
 
@@ -34,6 +35,7 @@ const resetBackground = document.getElementById("reset-background-btn");
 const controls = document.getElementById("controls-container");
 const showControls = document.getElementById("show-controls");
 const closeControls = document.getElementById("close-btn");
+const fullAlpha = document.getElementById("full-alpha-check");
 
 // Display Elements
 const scaleNoiseDisplay = document.getElementById("noise-scale");
@@ -111,6 +113,20 @@ backgroundColorPicker.addEventListener("change", () => {
   c.clearRect(0, 0, canvas.width, canvas.height);
   body.style.backgroundColor = backgroundColorPicker.value;
   backgroundColor = backgroundColorPicker.value;
+  init();
+});
+
+fullAlpha.addEventListener("change", () => {
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  fullAlpha.checked
+    ? ((globalAlpha = 1),
+      (acc = 1),
+      (accelerationDisplay.innerHTML = acc),
+      (accelerationRange.value = acc))
+    : ((globalAlpha = 0.1),
+      (acc = 3),
+      (accelerationDisplay.innerHTML = acc),
+      (accelerationRange.value = acc));
   init();
 });
 
@@ -211,7 +227,7 @@ class Particale {
 function init() {
   particales = [];
   c.fillStyle = backgroundColor;
-  c.globalAlpha = 0.1;
+  c.globalAlpha = globalAlpha;
   c.fillRect(0, 0, canvas.width, canvas.height);
 
   for (let i = 0; i < num; i++) {

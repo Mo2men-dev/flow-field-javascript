@@ -8,27 +8,39 @@ const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
 // **Global Variables** \
-let num = 1500;
+let num = 500;
 let scaleNoise = 0.01;
 let angleMult = 1;
 const colors = ["yellow", "blue"];
+let acc = 3;
 
 // **Controls** \
 
-const scaleNoiseDisplay = document.getElementById("noise-scale");
-const particalesAmountRange = document.getElementById("particales");
-const angleMulttRange = document.getElementById("noise-angle");
-const particalesAmountDisplay = document.getElementById("particales-num");
-const angleMultDisplay = document.getElementById("angle-num");
+// Control Elements
 const scaleNoiseIncrement = document.getElementsByClassName("increment")[0];
 const scaleNoiseDecrement = document.getElementsByClassName("decrement")[0];
+const particalesAmountRange = document.getElementById("particales");
+const angleMulttRange = document.getElementById("noise-angle");
+const accelerationRange = document.getElementById("acceleration");
 
+// Display Elements
+const scaleNoiseDisplay = document.getElementById("noise-scale");
+const particalesAmountDisplay = document.getElementById("particales-num");
+const angleMultDisplay = document.getElementById("angle-num");
+const accelerationDisplay = document.getElementById("acc-num");
+
+// Controls Display Set Up
 scaleNoiseDisplay.innerHTML = scaleNoise;
 particalesAmountDisplay.innerHTML = num;
+accelerationDisplay.innerHTML = acc;
 angleMultDisplay.innerHTML = angleMult;
-num = particalesAmountRange.value;
-angleMult = angleMulttRange.value;
 
+// Controls Values Set Up
+particalesAmountRange.value = num;
+angleMulttRange.value = angleMult;
+accelerationRange.value = acc;
+
+// Controls Event Listeners
 scaleNoiseIncrement.addEventListener("click", () => {
   if (scaleNoise !== 0.1) {
     c.clearRect(0, 0, canvas.width, canvas.height);
@@ -61,7 +73,16 @@ angleMulttRange.addEventListener("change", () => {
   init();
 });
 
+accelerationRange.addEventListener("change", () => {
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  acc = accelerationRange.value;
+  accelerationDisplay.innerHTML = acc;
+  console.log(acc);
+  init();
+});
+
 // **Canvas Resize** \
+
 canvas.width = window.innerWidth * 0.75;
 canvas.height = window.innerHeight * 0.75;
 
@@ -82,6 +103,9 @@ canvas.addEventListener("click", () => {
 });
 
 // **Objects** \
+
+// Particales
+
 let particales = [];
 class Particale {
   constructor(x, y, color) {
@@ -94,25 +118,27 @@ class Particale {
     c.save();
     c.beginPath();
 
-    c.arc(this.pos.x, this.pos.y, 0.5, 0, Math.PI * 2, false);
-    c.fillStyle = this.color;
-    c.fill();
+    // c.arc(this.pos.x, this.pos.y, 0.5, 0, Math.PI * 2, false);
+    // c.fillStyle = this.color;
+    // c.fill();
 
-    // c.moveTo(this.prevPos.x, this.prevPos.y);
-    // c.lineTo(this.pos.x, this.pos.y);
-    // c.strokeStyle = this.color;
-    // c.stroke();
+    c.moveTo(this.prevPos.x, this.prevPos.y);
+    c.lineTo(this.pos.x, this.pos.y);
+    c.strokeStyle = this.color;
+    c.stroke();
 
     c.closePath();
     c.restore();
     this.updatePrev();
   }
 
+  // Keep track of pervious position of the Particale
   updatePrev() {
     this.prevPos.x = this.pos.x;
     this.prevPos.y = this.pos.y;
   }
 
+  // Keep Particales on Screen
   edges() {
     if (this.pos.x > canvas.width) {
       this.pos.x = 0;
@@ -167,8 +193,8 @@ function animate() {
     );
 
     let a = Math.PI * 2 * n * angleMult;
-    particales[i].pos.x += Math.cos(a);
-    particales[i].pos.y += Math.sin(a);
+    particales[i].pos.x += Math.cos(a) * acc;
+    particales[i].pos.y += Math.sin(a) * acc;
   }
 }
 

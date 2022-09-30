@@ -19,6 +19,7 @@ let backgroundColor = "#222";
 
 // Elements
 const body = document.querySelector("body");
+const h1 = document.querySelector("h1");
 const scaleNoiseIncrement = document.getElementsByClassName("increment")[0];
 const scaleNoiseDecrement = document.getElementsByClassName("decrement")[0];
 const particalesAmountRange = document.getElementById("particales");
@@ -30,6 +31,9 @@ const backgroundColorPicker = document.getElementById(
   "background-color-picker"
 );
 const resetBackground = document.getElementById("reset-background-btn");
+const controls = document.getElementById("controls-container");
+const showControls = document.getElementById("show-controls");
+const closeControls = document.getElementById("close-btn");
 
 // Display Elements
 const scaleNoiseDisplay = document.getElementById("noise-scale");
@@ -38,6 +42,7 @@ const angleMultDisplay = document.getElementById("angle-num");
 const accelerationDisplay = document.getElementById("acc-num");
 
 // Controls Display Set Up
+h1.style.color = colors[0];
 scaleNoiseDisplay.innerHTML = scaleNoise;
 particalesAmountDisplay.innerHTML = num;
 accelerationDisplay.innerHTML = acc;
@@ -91,12 +96,14 @@ accelerationRange.addEventListener("change", () => {
 colorPicker.addEventListener("change", () => {
   c.clearRect(0, 0, canvas.width, canvas.height);
   colors = [colorPicker.value];
+  h1.style.color = colors[0];
   init();
 });
 
 resetColors.addEventListener("click", () => {
   c.clearRect(0, 0, canvas.width, canvas.height);
   colors = ["yellow", "blue"];
+  h1.style.color = colors[0];
   init();
 });
 
@@ -109,8 +116,17 @@ backgroundColorPicker.addEventListener("change", () => {
 
 resetBackground.addEventListener("click", () => {
   c.clearRect(0, 0, canvas.width, canvas.height);
+  body.style.backgroundColor = "#222";
   backgroundColor = "#222";
   init();
+});
+
+showControls.addEventListener("click", () => {
+  controls.style.display = "flex";
+});
+
+closeControls.addEventListener("click", () => {
+  controls.style.display = "none";
 });
 
 // **Canvas Resize** \

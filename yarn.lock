@@ -3,7 +3,6 @@
 
 
 "@chriscourses/perlin-noise@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@chriscourses/perlin-noise/-/perlin-noise-1.0.5.tgz#c57078a8213a0c9b2d50a80d6b6e284152bfb913"
-  integrity sha512-AjIAlGT1M1Pc4/P3MkztzETXRI/LyGMl/fRglbY/Vgdb8Sl6Rn/yOd1XiHQD5ftiUev6i33UbReVWI95wtntpg==
-
+  "integrity" "sha512-AjIAlGT1M1Pc4/P3MkztzETXRI/LyGMl/fRglbY/Vgdb8Sl6Rn/yOd1XiHQD5ftiUev6i33UbReVWI95wtntpg=="
+  "resolved" "https://registry.npmjs.org/@chriscourses/perlin-noise/-/perlin-noise-1.0.5.tgz"
+  "version" "1.0.5"
